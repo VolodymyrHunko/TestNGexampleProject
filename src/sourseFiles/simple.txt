@@ -1,0 +1,8 @@
+Apple
+-a fruit
+-a technology firm
+-a phone
+Table
+-a furniture
+-an object
+Added some text for learning
