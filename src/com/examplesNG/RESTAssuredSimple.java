@@ -7,11 +7,12 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 import org.testng.asserts.SoftAssert;
 
-
+@Listeners(com.examplesNG.listenerSimple.class)
 public class RESTAssuredSimple {
     private Assertion hardAssert = new Assertion();
     private SoftAssert softAssert = new SoftAssert();
@@ -35,7 +36,7 @@ public class RESTAssuredSimple {
         //use the JsonPath to retrieve data from body.
         JsonPath jpevaluator = resp.jsonPath();
         String city = jpevaluator.get("City");
-        softAssert.assertEquals(city, "Honolul", "City is rendered as: "+ city);
+        softAssert.assertEquals(city, "Honolulu", "City is rendered as: "+ city);
 
         softAssert.assertAll();
     }
@@ -48,11 +49,11 @@ public class RESTAssuredSimple {
 
         //create JSON object with parameters
         JSONObject requestParam = new JSONObject();
-        requestParam.put("FirstName", "Volo");
+        requestParam.put("FirstName", "Volody");
         requestParam.put("LastName", "Hunko");
-        requestParam.put("UserName", "v001");
+        requestParam.put("UserName", "v002");
         requestParam.put("Password", "Test1$");
-        requestParam.put("Email", "vhun0001@gmail.com");
+        requestParam.put("Email", "vhun0001+2@gmail.com");
 
         //add a header
         request.header("Content_Type", "application/json");
@@ -65,12 +66,12 @@ public class RESTAssuredSimple {
 
         //Validate response
         int statusCode = resp.getStatusCode();
-        softAssert.assertEquals(statusCode, 200);
+        hardAssert.assertEquals(statusCode, 200, "Status code is: "+statusCode);
         String successCode = resp.jsonPath().get("SuccessCode");
-        softAssert.assertEquals(successCode, "Correct Success code was returned");
+        softAssert.assertEquals(successCode, "Correct Success code was returned", "returned code is: "+successCode);
         System.out.println("Response body: " + resp.body().asString());
 
         softAssert.assertAll();
     }
-    
+
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageObjects.*;
+import pageObjects.simpleRecipePage;
 
 import java.util.concurrent.TimeUnit;
 
